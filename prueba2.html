@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <style>
+
+
+        body {
+           font-family: Arial, sans-serif;
+    background-color: #cfcba4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0; /* Un fondo suave */
+
+            .datos {
+    
+    background-color: #82ae6c; /* Color de fondo  adentro */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 300px;
+    text-align: center;
+    color: #ffffff;}
+
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="number"] {
+            width: 200px;
+            padding: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #resultados {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div class="datos">
+<h1>Registro de Finanzas</h1>
+    <label for="ingresos">Ingresos:</label>
+    <input type="number" id="ingresos" value="0">
+
+    <label for="gastos">Gastos:</label>
+    <input type="number" id="gastos" value="0">
+
+    <label for="ahorros">Ahorros:</label>
+    <input type="number" id="ahorros" value="0">
+
+    <button onclick="guardar()">Guardar</button>
+    <button onclick="consultar()">Consultar</button>
+
+    <div id="resultados">
+        <h2>Resultados:</h2>
+        <p id="mostrarIngresos">Ingresos: 0</p>
+        <p id="mostrarGastos">Gastos: 0</p>
+        <p id="mostrarAhorros">Ahorros: 0</p>
+        <p id="mostrarResultado">Beneficio/Pérdida: 0</p>
+    </div>
+    <a href="index.html"><button>Regresar</button></a>
+</div>
+    <script>
+        function guardar() {
+            let ingresos = parseFloat(document.getElementById("ingresos").value);
+            let gastos = parseFloat(document.getElementById("gastos").value);
+            let ahorros = parseFloat(document.getElementById("ahorros").value);
+
+            localStorage.setItem("ingresos", ingresos);
+            localStorage.setItem("gastos", gastos);
+            localStorage.setItem("ahorros", ahorros);
+
+            alert("Datos guardados.");
+        }
+
+        function consultar() {
+            let ingresos = parseFloat(localStorage.getItem("ingresos")) || 0;
+            let gastos = parseFloat(localStorage.getItem("gastos")) || 0;
+            let ahorros = parseFloat(localStorage.getItem("ahorros")) || 0;
+
+            document.getElementById("mostrarIngresos").textContent = "Ingresos: " + ingresos;
+            document.getElementById("mostrarGastos").textContent = "Gastos: " + gastos;
+            document.getElementById("mostrarAhorros").textContent = "Ahorros: " + ahorros;
+
+            let resultado = ingresos - gastos + ahorros;
+            document.getElementById("mostrarResultado").textContent = "Beneficio/Pérdida: " + resultado;
+        }
+
+    </script>
+
+</body>
+</html>

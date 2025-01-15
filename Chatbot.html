@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Chatbot Básico</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+<div class="chatbox">
+    <div class="chat-area" id="chat-area"></div>
+    <div class="input-area">
+        <input type="text" id="user-input" placeholder="Escribe un mensaje...">
+        <button id="send-button">Enviar</button>
+    </div>
+</div>
+<!--JavaScript funcionalidad del chatbot-->
+<script type="text/javascript">
+    const chatArea = document.getElementById("chat-area");
+    const userInput = document.getElementById("user-input");
+    const sendButton = document.getElementById("send-button");
+
+    // Almacena preguntas (claves) y respuestas (valores)
+    const responses = {
+        "Hola": "Hola, ¿en qué puedo ayudarte?",
+        "¿La app es gratuita o tiene costo?": "La app ofrece una versión gratuita con funciones básicas.",
+        "¿Cómo protegen mis datos personales y financieros?": "La app utiliza cifrado de extremo a extremo y cumple con los estándares de seguridad para proteger tu información.",
+        "¿Qué hago si la app se cierra o tiene errores?": "Verifica tu conexión a internet. Si el problema persiste, contáctanos.",
+        "¿Dónde los puedo contactar?": "En la sección Contáctanos o a través de nuestras redes sociales que se encuentran en la esquina de la página.",
+        "¿Hay una comunidad o foro donde puedo compartir consejos o dudas?": "Sí, la app cuenta con una comunidad donde puedes compartir tips y resolver dudas con otros usuarios.",
+        "¿La app tiene integración con otras aplicaciones?": "Sí, puedes recibir consejos financieros o dudas con nosotros sobre Google Finance.",
+        "¿Puedo usar la app en varios dispositivos al mismo tiempo?": "Sí, tu cuenta se sincroniza automáticamente en todos los dispositivos donde inicies sesión."
+        "Hola": "Hola, ¿en qué puedo ayudarte?",  
+        "¿Cómo registro mis ingresos en la app?": "Puedes ingresar tus ingresos de forma manual en la sección de ingreso quincenal.",  
+        "¿Puedo ver un resumen de mis ingresos y gastos?": "Sí, puedes consultar los datos registrados",  
+        "¿Qué funciones incluye la versión gratuita?": "La versión gratuita permite registrar ingresos, gastos y consultar un resumen básico.",  
+        "¿Puedo organizar mis movimientos financieros por fechas?": "No, puedes consultar tus registros ordenados por fecha.",  
+        "¿La app me ofrece sugerencias de ahorro?": "No, pero con el registro puedes consultarnos a nosotros por consejos de ahorro",  
+        "¿Qué hago si ingreso un dato incorrecto?": "Puedes editar o eliminar registros.",   
+        "¿La app requiere conexión a internet para funcionar?": "Sí, necesitas conexión a internet para registrar y consultar tus datos.",  
+        "¿Puedo usar la app para planificar un presupuesto?": "No, actualmente no contamos con una función específica para presupuestos.",  
+        "¿Puedo ver un historial completo de mis movimientos?": "Sí, puedes consultar todos tus registros en la sección de consultar datos.",  
+        "¿La app tiene una función de búsqueda para mis registros?": "No, actualmente no contamos con una función de búsqueda.",  
+        "¿Qué seguridad ofrece la app?": "Utilizamos protocolos estándar de seguridad para proteger tus datos.",  
+        "¿Puedo personalizar las categorías de mis ingresos o gastos?": "No, por ahora no contamos con la opción de personalizar categorías.",  
+        "¿Puedo usar la app para dividir gastos?": "No, actualmente no ofrecemos la opción de dividir gastos.",  
+        "¿Qué hago si necesito ayuda con alguna función?": "Puedes contactarnos a través de la sección de ayuda en el menú principal.",  
+        "¿Puedo registrar ingresos y gastos en diferentes monedas?": "No, la app solo permite registrar movimientos en una moneda estándar.",  
+        "¿La app genera notificaciones sobre mis registros?": "No, actualmente no ofrecemos notificaciones automáticas.",  
+        "¿Qué hago si mi cuenta falla?": "Contáctanos directamente para ayudarte a resolver el problema.",  
+        "¿Cómo elimino un registro en la app?": "Puedes eliminar cualquier registro desde el historial de movimientos.",  
+        "¿La app tiene actualizaciones frecuentes?": "Sí, trabajamos continuamente para mejorar la experiencia de los usuarios.",
+
+    };
+
+    /**
+     * Función para agregar un mensaje en el área del chat
+     * @param {string} message - El mensaje que se mostrará
+     * @param {boolean} isUser - Indica si el mensaje es del usuario (true) o del chatbot (false)
+     */
+    function add(message, isUser = true) {
+        // Crear un nuevo elemento de tipo div para mostrar el mensaje
+        const messageElement = document.createElement("div");
+        // Agregar una clase CSS dependiendo de quién envió el mensaje
+        messageElement.classList.add(isUser ? "user-message" : "bot-message");
+        // Establecer el texto del mensaje
+        messageElement.textContent = message;
+        // Añadir el mensaje al área del chat
+        chatArea.appendChild(messageElement);
+        // Hace scroll automáticamente hacia el último mensaje
+        chatArea.scrollTop = chatArea.scrollHeight;
+    }
+
+    // Evento para manejar el clic en el botón de enviar
+    sendButton.addEventListener("click", () => {
+        // Obtiene y limpia el mensaje escrito por el usuario
+        const userMessage = userInput.value.trim();
+        if (userMessage) {
+            // Agrega el mensaje del usuario al chat
+            add(userMessage, true);
+            // Busca la respuesta del chatbot, si no la encuentra usa una respuesta predeterminada
+            const botResponse = responses[userMessage] || "Lo siento, no entiendo esa pregunta.";
+            // Agrega la respuesta del chatbot al chat
+            add(botResponse, false);
+            // Limpia el campo de entrada
+            userInput.value = "";
+        }
+    });
+
+    // Evento para manejar la tecla Enter en el campo de entrada
+    userInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") { // Verifica que la tecla presionada es Enter
+            sendButton.click(); // Simula el clic en el botón de enviar
+        }
+    });
+</script>
+
+</body>
+</html>

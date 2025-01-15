@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #cfcba4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    background-color: #82ae6c; /* Color de fondo  adentro */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 300px;
+    text-align: center;
+    color: #82ae6c;
+}
+
+form h2 {
+    color: #ffffff; /* Inicio de sesion */
+}
+
+form label {
+    display: block;
+    margin-top: 10px;
+    color: #ffffff; /* Nombres de correo y eso */
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="number"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #004861; /* Contorno de adentro */
+    border-radius: 5px;
+    background-color: #FFFF; /* Donde se ponen las cosas */
+    color: #000;
+}
+
+form input[type="submit"] {
+    background-color: #FFF; /*  Inicio de sesion */
+    border: none;
+    padding: 10px 20px;
+    color: 253081;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: #FFFF; /* Iniciar sesion de abajo */
+}
